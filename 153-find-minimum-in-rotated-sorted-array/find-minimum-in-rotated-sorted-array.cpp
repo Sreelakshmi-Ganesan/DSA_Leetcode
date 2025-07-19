@@ -12,21 +12,17 @@ public:
                if(nums[low]<ans)
                {
                 ans=nums[low];
-                low=mid+1;
+                
                }
-               else{
-               low++;}
+              low=mid+1;
             } 
             else{
                  
                if(nums[mid]<ans)
                {
                 ans=nums[mid];
-                high=mid-1;
-               }
-                else{
-               high--;
-                }
+               
+               } high=mid-1;
             }
         }
         return ans;
