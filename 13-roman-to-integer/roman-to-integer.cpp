@@ -6,7 +6,7 @@ public:
      int value=0;
      for(int i=0;i<n;i++)
      {
-        if(i+1<n && mp[s[i]]<mp[s[i+1]])
+        if(i<n-1 && mp[s[i]]<mp[s[i+1]])
          value-=mp[s[i]];
          else{
             value+=mp[s[i]];
