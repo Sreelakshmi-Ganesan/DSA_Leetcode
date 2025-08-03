@@ -2,22 +2,17 @@ class Solution {
 public:
     int minAddToMakeValid(string s) {
         
-        queue<char> q;
-        int ct=0;
+
+        int open=0,add=0;
         for(auto &ch : s)
         {
-            if(ch=='('){ 
-                q.push(ch);
-                ct++;
-            }
-
-            if(!q.empty()) 
-            {if(ch==')') {
-                q.pop();
-                ct--;}
-                 }
-            else ct++;
+             if(ch=='(')
+             open++;
+             else{
+                if(open>0) open--;
+                else add++;
+             }
         }
-      return ct;
+      return open+add;
     }
 };
