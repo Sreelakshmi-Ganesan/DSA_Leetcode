@@ -13,13 +13,10 @@ public:
         }
         else 
         {if(el!=nums[i])
-        {
             count--;
-        }
         else count++;
-        }
-        
        } 
+       }
        return el;
     }
 };
