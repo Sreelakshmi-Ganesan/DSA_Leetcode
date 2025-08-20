@@ -2,7 +2,7 @@ class Solution {
 public:
     int candy(vector<int>& ratings) {
         int n=ratings.size();
-        vector<int>left(n),right(n);
+        vector<int>left(n);
         left[0]=1;
         for(int i=1;i<n;i++)
         {
@@ -12,20 +12,20 @@ public:
             }
             else left[i]=1;
         }
-         right[n-1]=1;
+         int sum=0;
+         int curr=1;
         for(int i=n-2;i>=0; i--)
         {
             if(ratings[i]>ratings[i+1])
             {
-                right[i]=right[i+1]+1;
+                curr+=1;
             }
-            else right[i]=1;
+            else curr=1;
+            sum+=max(curr,left[i]);
         }
-        int sum=0;
-        for(int i=0;i<n;i++)
-        {
-            sum+=max(left[i],right[i]);
-        }
+        sum+=max(1,left[n-1]);
+        
+        
         return sum;
     }
 };
