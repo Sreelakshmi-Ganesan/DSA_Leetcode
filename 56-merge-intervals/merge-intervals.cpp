@@ -12,7 +12,7 @@ public:
 
         for(int i=1;i<n;i++)
         {
-            if(!res.empty() && intervals[i][0]>res.back()[1])
+            if(intervals[i][0]>res.back()[1])
             {
                 res.push_back(intervals[i]);
             }
