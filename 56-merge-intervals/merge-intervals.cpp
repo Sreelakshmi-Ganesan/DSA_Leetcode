@@ -1,23 +1,26 @@
 class Solution {
 public:
+    const static bool comp(const vector<int> &a, const vector<int>&b)
+    {
+        return (a[0]<b[0]);
+    }
     vector<vector<int>> merge(vector<vector<int>>& intervals) {
-      int n = intervals.size();
-      sort(intervals.begin(),intervals.end());
-      vector<vector<int>> ans;
+        int n=intervals.size();
+        sort(intervals.begin(),intervals.end(),comp);
+        vector<vector<int>> res;
+        res.push_back(intervals[0]);
 
-      for(int i=0;i<n;i++)
-      {
-        if(ans.empty() || intervals[i][0]> ans.back()[1])
+        for(int i=1;i<n;i++)
         {
-            ans.push_back(intervals[i]);
+            if(!res.empty() && intervals[i][0]>res.back()[1])
+            {
+                res.push_back(intervals[i]);
+            }
+            else
+            {
+                res.back()[1]=max(res.back()[1],intervals[i][1]);
+            }
         }
-        else 
-        {
-            ans.back()[1]=max(ans.back()[1],intervals[i][1]);
-        }
-      }
-      
- return ans;
-
+        return res;
     }
 };
