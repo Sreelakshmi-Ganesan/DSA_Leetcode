@@ -2,25 +2,17 @@ class Solution {
 public:
     bool check(vector<int>& nums) {
         int n=nums.size();
-        vector<int>arr(n+n);
-        for(int i=0;i<n;i++)
-        {
-            arr[i]=nums[i];
-            arr[i+n]=nums[i];
-        }
-
         int ct=0;
-        for(int i=0;i<arr.size()-1;i++)
+        for(int i=0;i<n-1;i++)
         {
-            if(arr[i]<=arr[i+1])
-            {ct++;
-            
-            if(ct==n)return true;
-            }
-            else ct=1;
-            
-        }
+            if(nums[i]>nums[i+1])
+             ct++;
+        }    
+        if(nums[n-1]>nums[0])
+        ct++;
+
+        return (ct<=1);
         
-        return false;
+    
     }
 };
