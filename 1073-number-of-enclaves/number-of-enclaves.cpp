@@ -18,6 +18,7 @@ class Solution {
     }
 public:
     int numEnclaves(vector<vector<int>>& grid) {
+                       // same approach did in surrpunded regions
        int n=grid.size();
        int m=grid[0].size();
        vector<vector<int>>vis(n,vector<int>(m,0));
