@@ -1,31 +1,28 @@
 class Solution {
-public:
-  void subset(int ind,vector<int>&nums,int target, int n, vector<int>&ds,vector<vector<int>> &res)
-  {
-
+    private:
+    void combinations2(int ind,int n,vector<int>&candidates,int target,vector<int>&ds,vector<vector<int>>&ans)
+    {
         if(target==0)
-        {   
-            res.push_back(ds);
+        {
+            ans.push_back(ds);
             return;
         }
-    for(int i=ind;i<n;i++){
-         if(i>ind && nums[i]==nums[i-1]) continue;
-    if(nums[ind]>target) break;
-    ds.push_back(nums[i]);
-    subset(i+1,nums,target-nums[i],n,ds,res);
-    ds.pop_back();
+        for(int i=ind;i<n;i++)
+        {
+            if(i>ind && candidates[i]==candidates[i-1]) continue; // to avoid duplicates
+            if(candidates[i]>target) break; // when target is small than the element
+            ds.push_back(candidates[i]);
+            combinations2(i+1,n,candidates,target-candidates[i],ds,ans);
+            ds.pop_back();
+        }
     }
-    
-
-  }
+public:
     vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
+        int n=candidates.size();
         vector<int>ds;
-        vector<vector<int>>res;
-        sort(candidates.begin(),candidates.end());
-    
-        subset(0,candidates,target,candidates.size(),ds,res);
-        
-        return res;
-        
+        vector<vector<int>>ans;
+        sort(candidates.begin(),candidates.end()); // to bring all duplicates together
+        combinations2(0,n,candidates,target,ds,ans);
+        return ans;
     }
 };
