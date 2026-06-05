@@ -1,21 +1,32 @@
 class Solution {
 public:
+     int f(vector<int>&nums, int ind,vector<int>&dp)
+     {  if(ind<0) return 0; // case of empty array , n=0 then n-1 =-1 
+        if(ind==0) return nums[0];
+        if(ind==1) return max(nums[0],nums[1]);
+        if(dp[ind]!=-1) return dp[ind];
+        
+        int notake=f(nums,ind-1,dp)+0;
+        int take=INT_MIN;
+        if(ind>=2) take=f(nums,ind-2,dp)+nums[ind];
+        return dp[ind]= max(take,notake);
+        /*
+
+        if(ind < 0) return 0;
+
+        if(ind == 0) return nums[0];
+
+        int take = nums[ind] + f(nums, ind-2);
+
+        int notake = f(nums, ind-1);
+
+        return max(take, notake);
+        */
     
-    long long rob(vector<int>& nums) {
+     }
+    int rob(vector<int>& nums) {
         int n=nums.size();
-        long long prev1=nums[0];
-        long long prev2=0;
-        
-        for(int i=1;i<n;i++)
-        {
-            int pick=nums[i];
-            if(i>1) pick+=prev2;
-            int nopick=0+prev1;
-             long long curr= max(pick,nopick);
-            prev2=prev1;
-            prev1=curr;
-        }
-        return prev1;
-        
+        vector<int>dp(n,-1);
+        return f(nums,n-1,dp);
     }
 };
