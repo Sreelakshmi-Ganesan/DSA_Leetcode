@@ -1,18 +1,21 @@
 class Solution {
-public:
+public:         ///space optimization
      
     int rob(vector<int>& nums) {
         int n=nums.size();
-        vector<int>dp(n);
-        dp[0]=nums[0];
-         //dp[1]=max(nums[0],nums[1]); can be also made so that we could run loop from i=2
+        //vector<int>dp(n);
+        int prev1=nums[0];
+        int prev2=0;
+         
         for(int i=1;i<n;i++)
         {
             int take=nums[i];
-            if(i>=2) take+=dp[i-2];
-            int nontake=0+dp[i-1];
-            dp[i]=max(take,nontake);
+            if(i>=2) take+=prev2;
+            int nontake=0+prev1;
+            int curri=max(take,nontake);
+            prev2=prev1;
+            prev1=curri;
         }
-        return dp[n-1];
+        return prev1;
     }
 };
