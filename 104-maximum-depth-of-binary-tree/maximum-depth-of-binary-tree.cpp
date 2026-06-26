@@ -12,21 +12,24 @@
 
 
  //using queue - just return the number of levels
- //comparing the left and right depth of each node
+ /// dont use extra space to store the nodes of each level , just use a variable to increment per level
+ 
 class Solution {
 public:
     int maxDepth(TreeNode* root) {
         
-       vector<vector<int>>res;
+       
      if(root==NULL) return 0;
 
      queue<TreeNode*>q;
+     int depth=0;
      q.push(root);
+     
 
      while(!q.empty())
      {
         int sizeoflevel=q.size();
-        vector<int>level; //to store same level elements
+       
 
         for(int i=0;i<sizeoflevel;i++)
         {
@@ -34,11 +37,12 @@ public:
             q.pop();
             if(temp->left!=NULL) q.push(temp->left);
             if(temp->right!=NULL) q.push(temp->right);
-            level.push_back(temp->val);
+            
         }
-        res.push_back(level);  
+
+        depth++;
      }
 
-     return res.size();
+     return depth;
     }
 };
