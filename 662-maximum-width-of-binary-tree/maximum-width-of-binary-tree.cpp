@@ -10,6 +10,8 @@
  * };
  */
  //level order solution assigning each node indexes
+
+ // used unsigned hint for runtime error of int overflow
 class Solution {
 public:
     int widthOfBinaryTree(TreeNode* root) {
