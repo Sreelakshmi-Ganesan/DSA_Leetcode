@@ -38,7 +38,7 @@ public:
         int lh=leftht(root);
         int rh=rightht(root);
 
-        if(lh==rh) return (1<<lh)-1; // it will be complete tree , the 2^h -1 nodes
+        if(lh==rh) return (1<<lh)-1; // it will be full tree , the 2^h -1 nodes
         
         return 1+countNodes(root->left)+countNodes(root->right); // root + left subtree + right subtree -> recursively searching to fond complete subtree
         
