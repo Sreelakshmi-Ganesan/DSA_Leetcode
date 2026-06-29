@@ -10,7 +10,7 @@
  * };
  */
 
- /// uses the concept of complete tree( 2^h - 1)
+ /// uses the concept of full tree( 2^h - 1)
 int leftht(TreeNode *root)
 {   int ht=0;
     while(root)
